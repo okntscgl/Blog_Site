@@ -54,7 +54,6 @@ public class PostService {
         return postRepository.save(post);
     }
 
-    // Custom Exception inside the Service Class
     public static class PostNotFoundException extends RuntimeException {
         public PostNotFoundException(String message) {
             super(message);
