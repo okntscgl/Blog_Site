@@ -69,37 +69,7 @@ Configure the Application:
 
 Set up your Auth0 credentials in the application.yml file for OAuth2 login configuration.
 Set up your PostgreSQL connection settings in the application.yml.
-Example configuration:
-
-.yaml
-spring:
-  security:
-    oauth2:
-      client:
-        registration:
-          auth0:
-            client-id: YOUR_CLIENT_ID
-            client-secret: YOUR_CLIENT_SECRET
-            scope:
-              - openid
-              - profile
-              - email
-        provider:
-          auth0:
-            issuer-uri: https://YOUR_AUTH0_DOMAIN/
-And the PostgreSQL setup:
-
-yaml
-Kodu kopyala
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/your-database
-    username: your-username
-    password: your-password
-    driver-class-name: org.postgresql.Driver
 Build and Run the Application: Using Maven:
-
-arduino
 
 mvn clean install
 mvn spring-boot:run
@@ -109,8 +79,6 @@ bash
 
 ./gradlew bootRun
 Access the Application: The application should now be running. Access it via the following URL:
-
-arduino
 
 http://localhost:8080
 API Endpoints
