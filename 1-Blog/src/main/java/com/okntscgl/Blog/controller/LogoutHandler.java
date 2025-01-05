@@ -43,7 +43,7 @@ public class LogoutHandler extends SecurityContextLogoutHandler {
                 response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             }
         } else {
-            // Handle error if auth0 registration not found
+           
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
