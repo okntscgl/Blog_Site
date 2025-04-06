@@ -1,6 +1,3 @@
-server:
-  port: 8090
-
 spring:
   security:
     oauth2:
@@ -15,12 +12,12 @@ spring:
               - email
         provider:
           auth0:
-            issuer-uri: https://dev-2t27j0ndasw4an67.us.auth0.com/
+            issuer-uri: https://YOUR_AUTH0_DOMAIN/
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/blog_site
-    username: postgres
-    password: 1823
+    url: jdbc:postgresql://localhost:5432/your-database
+    username: your-username
+    password: your-password
     driver-class-name: org.postgresql.Driver
 
   jpa:
