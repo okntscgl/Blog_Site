@@ -76,9 +76,6 @@ repository/
 ├─ PostRepository
 └─ CommentRepository
 
-markdown
-Kodu kopyala
-
 ---
 
 ## Domain Models
@@ -139,13 +136,10 @@ mvn spring-boot:run
 or with Gradle:
 
 bash
-Kodu kopyala
 ./gradlew bootRun
 Access
 The application runs at:
 
-arduino
-Kodu kopyala
 http://localhost:8080
 Engineering Focus
 This project demonstrates experience in:
