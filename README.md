@@ -1,36 +1,166 @@
-Blog Platform with OAuth2 Authentication Overview This project is a Blog platform designed using Spring Boot and OAuth2 authentication, with a focus on implementing CRUD operations for managing users, posts, and comments. The application leverages Spring Security to secure endpoints and PostgreSQL as the database for storing user and content data.
+# Blog Platform with OAuth2 Authentication
 
-Users can create, update, delete, and view posts and comments. The authentication is handled using an external OAuth2 provider (such as Auth0), ensuring secure login and session management. The project also supports basic CRUD functionality for user management.
+**Secure, production-oriented blog backend built with Spring Boot and OAuth2**
 
-Features OAuth2 Authentication: Integrated with an external identity provider (e.g., Auth0) to authenticate users using OAuth2. This provides a secure way for users to log in and access the platform. User Management: Allows users to register, update their information, and delete their accounts. Post Management: Users can create, update, delete, and view blog posts. Comment Management: Allows users to add, update, delete, and view comments on posts. Security: All sensitive API endpoints are secured using Spring Security with OAuth2 login and form-based login options. Technologies Used Spring Boot: The backend framework used to build the application. Spring Security: For securing the application with OAuth2, JWT, and form-based login. PostgreSQL: Relational database used to store user data, posts, and comments. Spring Data JPA: For easy interaction with the PostgreSQL database using Java Persistence API (JPA). OAuth2: Used for secure authentication via an external provider (Auth0 in this case). Spring Boot Starter Web: For building RESTful APIs. Spring Boot Starter Test: For unit and integration testing. Project Structure
+This project is a backend-focused blog platform that demonstrates how to design a **secure, authentication-driven REST API** using Spring Boot, OAuth2, and PostgreSQL.
 
-Security Configuration The project uses Spring Security to secure all endpoints and manage authentication and authorization via OAuth2.
-OAuth2 Login: Integrated with Auth0 as the external provider for user authentication. Logout Handler: Custom LogoutHandler class is used to redirect users to the Auth0 logout page for clean session termination. Password Encoding: BCrypt is used for password hashing and verification to ensure user credentials are securely stored. 2. Models The project uses JPA entities to represent the data model:
+The application emphasizes **clean architecture, secure authentication, and proper separation of concerns**, rather than frontend complexity.
 
-User: Represents users of the platform, including their credentials and personal information. Post: Represents a blog post with title, content, status, and timestamps. Comment: Represents a comment on a blog post, including content, approval status, and the ability to reference parent comments. 3. Controllers The controllers are responsible for handling incoming HTTP requests and managing communication between the client and backend services.
+---
 
-AuthController: Manages user registration, login, and logout. PostController: Handles CRUD operations for blog posts. CommentController: Manages CRUD operations for comments on posts. 4. Services The service layer contains the core business logic of the application, including interactions with the database and validation.
+## Overview
 
-AuthService: Manages user authentication, registration, and logout. PostService: Handles business logic for CRUD operations on blog posts. CommentService: Manages CRUD operations for comments on posts. UserService: Manages the CRUD operations for user-related functionalities. 5. Database PostgreSQL: A relational database is used to store data for users, posts, and comments. The application uses Spring Data JPA for database interactions, including saving, updating, and deleting records.
+The Blog Platform allows users to create, update, delete, and view blog posts and comments.
 
-JPA is configured to use Hibernate as the default ORM (Object-Relational Mapping) tool. 6. Application Security OAuth2 Authentication: Users are authenticated using OAuth2 through Auth0. The application uses the OAuth2 flow to allow users to log in securely.
+Authentication and authorization are handled using **OAuth2 with an external identity provider** (such as Auth0), ensuring secure login, token management, and session handling.
 
-Spring Security: Configured to allow users to log in via a form or OAuth2, and restrict access to authenticated users for certain endpoints.
+All sensitive endpoints are protected using **Spring Security**, and data is persisted in **PostgreSQL** via Spring Data JPA.
 
-Logout: Logout is handled via a custom LogoutHandler class, which redirects users to the Auth0 logout endpoint to ensure their session is terminated securely.
+---
 
-Setup and Installation Prerequisites Java 17 or later. PostgreSQL database running locally or on a server. OAuth2 Provider: If using Auth0, create an Auth0 account and configure an application to obtain your Client ID and Client Secret. Steps to Run the Application Clone the Repository:
+## Key Features
 
-git clone https://github.com/your-username/blog-platform.git cd blog-platform Configure the Application:
+- OAuth2 authentication via external identity provider (Auth0)
+- Secure endpoint protection with Spring Security
+- CRUD operations for users, posts, and comments
+- Role-based access control
+- PostgreSQL persistence with JPA & Hibernate
+- Clean layered architecture (Controller / Service / Repository)
+- BCrypt password hashing
+- Custom logout handling
 
-Set up your Auth0 credentials in the application.yml file for OAuth2 login configuration. Set up your PostgreSQL connection settings in the application.yml. Build and Run the Application: Using Maven:
+---
 
-mvn clean install mvn spring-boot:run Or, using Gradle:
+## Technology Stack
+
+- **Backend:** Spring Boot
+- **Security:** Spring Security, OAuth2, JWT
+- **Database:** PostgreSQL
+- **ORM:** Spring Data JPA (Hibernate)
+- **Authentication Provider:** Auth0
+- **Build Tool:** Maven / Gradle
+- **Testing:** Spring Boot Starter Test
+
+---
+
+## Security Design
+
+- OAuth2 login flow using an external identity provider
+- JWT-based authentication for API access
+- BCrypt password hashing for secure credential storage
+- Protected endpoints via Spring Security configuration
+- Custom logout handler for proper session termination with Auth0
+
+---
+
+## Project Structure
+
+controller/
+├─ AuthController
+├─ PostController
+└─ CommentController
+
+service/
+├─ AuthService
+├─ UserService
+├─ PostService
+└─ CommentService
+
+model/
+├─ User
+├─ Post
+└─ Comment
+
+repository/
+├─ UserRepository
+├─ PostRepository
+└─ CommentRepository
+
+markdown
+Kodu kopyala
+
+---
+
+## Domain Models
+
+- **User**
+  - Represents platform users and authentication-related data
+- **Post**
+  - Represents blog posts with content, metadata, and timestamps
+- **Comment**
+  - Represents comments on posts, including approval status and parent-child relations
+
+---
+
+## API Endpoints
+
+### Authentication
+- `POST /api/auth/login` – Authenticate user
+- `POST /api/auth/register` – Register new user
+- `POST /api/auth/logout` – Logout user
+
+### Posts
+- `GET /api/posts` – Retrieve all blog posts
+- `GET /api/posts/{id}` – Retrieve post by ID
+- `POST /api/posts` – Create a new blog post
+- `PUT /api/posts/{id}` – Update an existing post
+- `DELETE /api/posts/{id}` – Delete a blog post
+
+### Comments
+- `GET /api/comments` – Retrieve all comments
+- `POST /api/comments` – Create a new comment
+- `PUT /api/comments/{id}` – Update an existing comment
+- `DELETE /api/comments/{id}` – Delete a comment
+
+---
+
+## Setup & Installation
+
+### Prerequisites
+
+- Java 17 or later
+- PostgreSQL
+- OAuth2 Provider (e.g. Auth0)
+
+### Configuration
+
+Update `application.yml` with:
+- OAuth2 client ID and client secret
+- PostgreSQL connection details
+
+### Run the Application
+
+```bash
+git clone https://github.com/your-username/blog-platform.git
+cd blog-platform
+
+mvn clean install
+mvn spring-boot:run
+or with Gradle:
 
 bash
+Kodu kopyala
+./gradlew bootRun
+Access
+The application runs at:
 
-./gradlew bootRun Access the Application: The application should now be running. Access it via the following URL:
+arduino
+Kodu kopyala
+http://localhost:8080
+Engineering Focus
+This project demonstrates experience in:
 
-http://localhost:8080 API Endpoints POST /api/auth/login: Login endpoint to authenticate the user. POST /api/auth/register: Register a new user. POST /api/auth/logout: Logout the user. GET /api/posts: Retrieve all blog posts. GET /api/posts/{id}: Retrieve a single post by ID. POST /api/posts: Create a new blog post. PUT /api/posts/{id}: Update an existing post. DELETE /api/posts/{id}: Delete a post. GET /api/comments: Retrieve all comments. POST /api/comments: Create a new comment. PUT /api/comments/{id}: Update an existing comment. DELETE /api/comments/{id}: Delete a comment. Conclusion This project provides a comprehensive blog platform with secure authentication and authorization using OAuth2. It allows users to manage posts and comments while ensuring a high level of security with Spring Security and OAuth2 integration. The backend is built using Spring Boot, and PostgreSQL is used for persistent storage.
+Secure REST API design
 
-License This project is licensed under the MIT License - see the LICENSE file for details.
+OAuth2-based authentication flows
+
+Spring Security configuration
+
+Clean backend architecture
+
+Relational data modeling with JPA
+
+Real-world authentication and authorization patterns
+
+License
+MIT License
