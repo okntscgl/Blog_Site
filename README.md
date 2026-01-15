@@ -128,6 +128,7 @@ Update `application.yml` with:
 ### Run the Application
 
 ```bash
+
 git clone https://github.com/your-username/blog-platform.git
 cd blog-platform
 
